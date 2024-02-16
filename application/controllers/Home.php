@@ -1,13 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller
+class Home extends CI_Controller
 {
 
 	public function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
 		$this->load->model('Karyawan_model');
 		$this->load->model('Crud_model');
 	}
@@ -19,7 +18,7 @@ class Welcome extends CI_Controller
 			'jabatan' => $this->Crud_model->view(null, 'tbl_jabatan', null)->result(),
 			'kota' => $this->Crud_model->view(null, 'tbl_kota', null)->result()
 		];
-		$this->load->view('welcome_message', $data);
+		$this->load->view('home', $data);
 	}
 
 	function get_data_karyawan()
@@ -109,5 +108,11 @@ class Welcome extends CI_Controller
 			$massage = ['status' => false];
 		}
 		echo json_encode($massage);
+	}
+
+	function differenceDays($days1, $days2)
+	{
+		$datediff =  strtotime($days2) - strtotime($days1);
+		echo round($datediff / (60 * 60 * 24));
 	}
 }

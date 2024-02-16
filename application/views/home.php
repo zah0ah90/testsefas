@@ -18,6 +18,10 @@
 			color: white;
 			background-color: #ffc107;
 		}
+
+		.navbar-dark .navbar-nav a.nav-link {
+			color: white !important;
+		}
 	</style>
 
 	<title>Test Sefas Group</title>
@@ -125,12 +129,12 @@
 			<table id="table" class="display table table-striped table-bordered" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th>No</th>
+						<th width="5%">No</th>
 						<th>Nama Karyawan</th>
 						<th>Tanggal Lahir</th>
 						<th>Jabatan</th>
 						<th>Kota Asal</th>
-						<th>Action</th>
+						<th width="15%">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -241,7 +245,7 @@
 				"serverSide": true,
 				"order": [],
 				"ajax": {
-					"url": "<?= base_url('welcome/get_data_karyawan') ?>",
+					"url": "<?= base_url('home/get_data_karyawan') ?>",
 					"type": "POST"
 				},
 				"columnDefs": [{
@@ -267,7 +271,7 @@
 			$('#formKaryawan')[0].reset();
 			$('.btn-save').text('Ubah Data');
 			$.ajax({
-				url: "<?= base_url('welcome/editKaryawan/') ?>" + paramsId,
+				url: "<?= base_url('home/editKaryawan/') ?>" + paramsId,
 				type: "POST",
 				dataType: "JSON",
 				beforeSend: function() {},
@@ -295,7 +299,7 @@
 				/* Read more about isConfirmed, isDenied below */
 				if (result.isConfirmed) {
 					$.ajax({
-						url: "<?= base_url('welcome/deleteKaryawan/') ?>" + paramsId,
+						url: "<?= base_url('home/deleteKaryawan/') ?>" + paramsId,
 						type: "POST",
 						dataType: "JSON",
 						beforeSend: function() {},
@@ -322,9 +326,9 @@
 				var formData = new FormData($('#formKaryawan')[0]);
 				var edit = $('[name=id]').val();
 				if (edit == '') {
-					var url = '<?= base_url('welcome/saveKaryawan') ?>';
+					var url = '<?= base_url('home/saveKaryawan') ?>';
 				} else {
-					var url = '<?= base_url('welcome/updateKaryawan') ?>';
+					var url = '<?= base_url('home/updateKaryawan') ?>';
 				}
 				$.ajax({
 					url: url,
